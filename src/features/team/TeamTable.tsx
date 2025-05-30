@@ -6,7 +6,7 @@ import { v4 as uuidv4 } from 'uuid';
 import { Button } from '../../components/Button';
 import TeamTableView from './TeamTableView';
 import Member from './Member';
-import avatarImage from '../../assets/avatar-image-18.png';
+import { Tag } from 'antd';
 
 const TeamTable = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -32,8 +32,29 @@ const TeamTable = () => {
       ),
     },
     { header: "Role", accessorKey: "role" },
-    { header: "Status", accessorKey: "status" },
-    { header: "Last Updated", accessorKey: "updatedAt" },
+    { header: "Status", accessorKey: "status",
+      cell: ({ row }: any) => (
+        <Tag color={row.original.status === 'Available' ? 'green' : 'red'}>
+          {row.original.status}
+        </Tag>
+      )
+     },
+    {
+      header: "Last Updated",
+      accessorKey: "updatedAt",
+      cell: ({ row }: any) => (
+        <span>
+          {new Date(row.original.updatedAt).toLocaleString(undefined, {
+            month: 'short',
+            day: 'numeric',
+            year: 'numeric',
+            hour: 'numeric',
+            minute: '2-digit',
+            hour12: true,
+          })}
+        </span>
+      ),
+    },
     {
       header: "Action",
       accessorKey: "action",
@@ -82,44 +103,7 @@ const TeamTable = () => {
       </TeamTableView>
       <div className="overflow-x-auto">
 
-        <table className="min-w-full border border-gray-200 rounded">
-          <thead className="bg-gray-100 text-left">
-            <tr>
-              <th className="py-2 px-4 border-b">Member</th>
-              <th className="py-2 px-4 border-b">Role</th>
-              <th className="py-2 px-4 border-b">Status</th>
-              <th className="py-2 px-4 border-b">Last Updated</th>
-              <th className="py-2 px-4 border-b">Action</th>
-            </tr>
-          </thead>
-          <tbody>
-            {teamMembers.map((member: TeamMember) => (
-              <tr key={member.id} className="hover:bg-gray-50">
-                <td className="py-2 px-4 border-b">
-                  {member.firstName} {member.lastName}
-                </td>
-                <td className="py-2 px-4 border-b">-</td>
-                <td className="py-2 px-4 border-b">
-                  <span
-                    className={`px-2 py-1 rounded text-sm font-medium ${member.status === 'Active'
-                      ? 'bg-green-100 text-green-800'
-                      : 'bg-red-100 text-red-800'
-                      }`}
-                  >
-                    {member.status}
-                  </span>
-                </td>
-                <td className="py-2 px-4 border-b">
-                  {new Date(member.updatedAt).toLocaleDateString()}
-                </td>
-                <td className="py-2 px-4 border-b">
-                  <Button variant='outline'>View Details</Button>
-                  {/* <button className="text-blue-600 hover:underline"></button> */}
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
+       
       </div>
 
       {/* Modal */}

@@ -5,7 +5,7 @@ export interface TeamMember {
   email: string;
   phone: string;
   role: string;
-  status: 'Active' | 'Inactive';
+  status: 'Available' | 'Unavailable';
   gender: 'Male' | 'Female';
   updatedAt: string;
   imgUrl: string;

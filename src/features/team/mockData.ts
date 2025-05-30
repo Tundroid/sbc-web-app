@@ -62,7 +62,7 @@ export const mockTeamMembers: TeamMember[] = Array.from({ length: 30 }, (_, i) =
     phone: `+12345678${i}`,
     role: roles[i % roles.length],
     imgUrl: imageUrls[i % imageUrls.length],
-    status: i % 2 === 0 ? 'Active' : 'Inactive',
+    status: i % 2 === 0 ? 'Available' : 'Unavailable',
     gender: i % 2 === 0 ? 'Male' : 'Female',
     updatedAt: new Date().toISOString(),
 }));
