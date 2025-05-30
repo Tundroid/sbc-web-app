@@ -13,7 +13,8 @@ const sizeStyles: Record<string, string> = {
 };
 
 const variantStyles: Record<string, string> = {
-  primary: "bg-blue-600 text-white hover:bg-blue-700",
+  primary:
+    "w-[194px] h-10 rounded-[6px] pt-3 pr-4 pb-3 pl-4 bg-[#ED3237] text-white",
   secondary: "bg-gray-200 text-gray-800 hover:bg-gray-300",
   outline: "border border-blue-600 text-blue-600 hover:bg-blue-50",
 };
